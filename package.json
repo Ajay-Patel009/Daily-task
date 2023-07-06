@@ -1,0 +1,16 @@
+{
+  "name": "test",
+  "version": "2.1.3",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ajay",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "joi": "^17.9.2",
+    "nodemon": "^1.19.4"
+  }
+}
