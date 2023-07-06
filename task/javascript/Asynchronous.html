@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <body>
+        <p>asynchronous</p>
+
+        <script>
+            function greet(name)
+            {
+                console.log(`hello ${name} how are you?`);
+            }
+            function print_sum(){
+                var sum=0;
+                for(let i=0;i<1000;i++)
+                {
+                    for(let j=0;j<1000;j++)
+                    {
+                        for(let k=0;k<1000;k++)
+                        {
+                            sum=sum+i+j+k;
+                        }
+                    }
+                }
+                console.log(sum);
+            }
+            print_sum();
+            console.log("hiii")
+            greet("ajay");
+            console.log("hello");
+        </script>
+    </body>
+</html>
