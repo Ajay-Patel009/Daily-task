@@ -1,0 +1,29 @@
+
+-- SELECT Contents,username FROM COMMENTS
+-- JOIN photos
+-- on COMMENTS.photo_id=photos.id
+-- JOIN USERS
+-- ON Comments.user_id=users.id
+-- WHERE photos.id=3;
+
+
+
+
+
+
+SELECT AVG(count_comment) AS average_comment
+FROM (
+  SELECT COUNT(*) AS count_comment
+  FROM comments
+  GROUP BY photo_id
+) QUERY;
+
+Ajay Kumar Patel, Yesterday 11:26 AM
+- SELECT MAX(CommentCount) FROM
+-- (
+-- SELECT   COUNT(Comments.photo_id) as CommentCount 
+-- FROM Photos 
+-- LEFT JOIN Comments on Photos.id = Comments.Photo_id 
+-- GROUP BY Photos.id 
+-- ORDER BY CommentCount DESC 
+--   )QUERY;
