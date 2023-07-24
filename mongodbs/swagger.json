@@ -1,0 +1,35 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Sample API",
+    "version": "1.0.0",
+    "description": "An API that sends a simple response of 'hello'."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3500",
+      "description": "Local development server"
+    }
+  ],
+  "paths": {
+    "/getresponse": {
+      "get": {
+        "summary": "Get a simple response",
+        "description": "Get a simple response of 'hello'",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "example": "hello"
+          }
+        }
+      }
+    }
+  }
+}
