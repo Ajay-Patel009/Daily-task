@@ -11,7 +11,7 @@ interface IFollower {
 }
 
 const  followerSchema = new Schema<IFollower>({
-  followee_id: { type:mongoose.Schema.Types.ObjectId, ref: 'User',},
+  followee_id: { type:mongoose.Schema.Types.ObjectId, ref: User,},
   follower_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: User,},

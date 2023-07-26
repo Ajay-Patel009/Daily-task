@@ -1,14 +1,14 @@
-import connectToDatabase from '../mongodb/src/db/connection';
-import Users from '../mongodb/src/models/user';
+import connectToDatabase from '../mongodbs/src/db/connection';
+import Users from '../mongodbs/src/models/user';
 import posts from './src/models/post';
 import followers from './src/models/follower';
 import action from './src/models/actions';
 import express from 'express';
 import session from './src/models/session';
 import registration from './src/models/registration';
-import authroutes from '../mongodb/src/routes/authroutes'
-import follower from '../mongodb/src/routes/followerRoutes';
-import postRoutes from '../mongodb/src/routes/postRoutes';
+import authroutes from '../mongodbs/src/routes/authroutes'
+import follower from '../mongodbs/src/routes/followerRoutes';
+import postRoutes from '../mongodbs/src/routes/postRoutes';
 import * as YAML from 'yamljs';
 import { redisConnect } from './src/db/redis';
 import fetch from 'node-fetch';
@@ -50,11 +50,11 @@ app.use('/followers', follower); // get number of followers
 app.use('/post', postRoutes) // create and update post
 
 
-// try {
-//   redisConnect();
-//   console.log("redis connected");
-// }
-// catch (err) { console.log(err); }
+
+
+
+
+
 
 
 app.get('/api/data', (req, res) => {

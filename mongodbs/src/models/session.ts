@@ -11,6 +11,7 @@ interface ISession {
   updated_at: Date;
   device_id : String;
   IP_address : String;
+  isActive: boolean;
 }
 
 const  actionSchema = new Schema<ISession>({
@@ -18,9 +19,10 @@ const  actionSchema = new Schema<ISession>({
   session_token:{ type :String, default:null},
   created_at : {type: Date},
   updated_at: {type: Date},
-  IP_address : {type: Date},
+  IP_address : {type: String},
   device_id : {type:String},
-  last_active_at_at : {type : String}
+  last_active_at_at : {type : String},
+  isActive : {type:Boolean}
   });
 
 const  session = model<ISession>('Sessions', actionSchema);

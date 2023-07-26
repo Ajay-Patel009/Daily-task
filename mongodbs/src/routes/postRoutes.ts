@@ -1,6 +1,6 @@
 import express from 'express';
 import {editPost, post} from '../controllers/postController';
-import auth from '../middleware/jwtmiddleware';
+import auth from '../middleware/redismiddleware';
 
 
 const router = express.Router();

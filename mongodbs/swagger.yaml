@@ -5,7 +5,7 @@ info:
   description: An API for Instagram Project
 
 paths:
-  /signup:
+  /auth/signup:
     post:
       summary: Create a new user account
       tags:
@@ -37,7 +37,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /login:
+  /auth/login:
     post:
       summary: User login
       tags:
@@ -112,21 +112,14 @@ components:
     UserSignup:
       type: object
       properties:
-        name:
-          type: string
-        username:
+        user_name:
           type: string
         email:
           type: string
         password:
           type: string
-        bio:
-          type: string
-        profilePicture:
-          type: string
       required:
-        - name
-        - username
+        - user_name
         - email
         - password
 
@@ -155,15 +148,17 @@ components:
     PostCreation:
       type: object
       properties:
-        userId:
+        content:
           type: string
-        image:
+        auther:
+          type: object
+        description:
           type: string
-        caption:
-          type: string
+        # tags:
+        #   type: array
       required:
-        - userId
-        - image
+        
+        
 
     PostResponse:
       type: object
