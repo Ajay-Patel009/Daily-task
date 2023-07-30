@@ -2,7 +2,7 @@
 // import express from 'express';
 // import bodyParser from 'body-parser'
 import { Request,Response } from "express";
-import User from "../models/users";
+import User from "../../models/users";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 

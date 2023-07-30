@@ -4,7 +4,11 @@ import  sendEmail  from '../utils/sendEmail';
 import crypto from 'crypto';
 import Joi from 'joi';
 import express from 'express';
+import dotenv from 'dotenv';
 const router = express.Router();
+
+
+dotenv.config();
 
 router.post("/", async (req, res) => {
     try {
@@ -18,10 +22,10 @@ router.post("/", async (req, res) => {
 
         let token = await Token.findOne({where:{id: user.id }});
         if (!token) {
-            token = await new Token({
-                userId: user.id,
+            token = await Token.create({
+                id: user.id,
                 token: crypto.randomBytes(32).toString("hex"),
-            }).save();
+            })
         }
 
         const link = `${process.env.BASE_URL}/password-reset/${user.id}/${token.token}`;
@@ -34,24 +38,26 @@ router.post("/", async (req, res) => {
     }
 });
 
-router.post("/:userId/:token", async (req, res) => {
+router.post("/:user_id/:token", async (req, res) => {
+    // const {user_id,token} = req.body;
     try {
         const schema = Joi.object({ password: Joi.string().required() });
         const { error } = schema.validate(req.body);
         if (error) return res.status(400).send(error.details[0].message);
 
-        const user = await User.findById(req.params.userId);
+        const user = await User.findByPk(req.params.user_id);
         if (!user) return res.status(400).send("invalid link or expired");
 
-        const token = await Token.findOne({
-            userId: user.id,
+        const token = await Token.findOne({where:{
+            id: user.id,
             token: req.params.token,
-        });
+        }});
         if (!token) return res.status(400).send("Invalid link or expired");
 
         user.password = req.body.password;
+        // await token.delete();
         await user.save();
-        await token.delete();
+        // token.delete();
 
         res.send("password reset sucessfully.");
     } catch (error) {

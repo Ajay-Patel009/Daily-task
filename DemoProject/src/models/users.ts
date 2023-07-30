@@ -23,8 +23,8 @@ class User extends Model {
   public email!:string;
   public password!: string;
   public mobile_no!: number;
-  // public !: string;
-  // public password!: string;
+  public profilePic!:Blob;
+    // public password!: string;
   // public password!: string;
   // public password!: string;
 }
@@ -55,19 +55,14 @@ User.init({
     type: DataTypes.INTEGER,
     allowNull: false
     
-  }
-  // profile_foto: {
-  //   type: DataTypes.STRING
-    
-  // },
-  // status: {
-  //   type: DataTypes.ENUM('active','inactive')
+  },
+  profilePic: {
+    type: DataTypes.BLOB,
+  },
+  gender: {
+    type: DataTypes.ENUM('male','female')
    
-  // },
-  // gender: {
-  //   type: DataTypes.ENUM('male','female')
-   
-  // },
+  },
   // DOB: {
   //   type: DataTypes.DATE
     
@@ -86,9 +81,8 @@ User.init({
   sequelize, 
   modelName: 'users' 
 });
-// sequelize.sync({ force: true });
-console.log("hii")
-console.log(User === sequelize.models.users); // true
+
+
 
 
 

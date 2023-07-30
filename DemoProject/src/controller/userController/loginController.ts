@@ -1,7 +1,8 @@
 import { Request,Response } from "express";
-import User from "../models/users";
+import User from "../../models/users";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import Session from "../../models/session";
 
 export const login= async(req:Request,res:Response)=>{
 
@@ -19,7 +20,16 @@ export const login= async(req:Request,res:Response)=>{
          const comp= await bcrypt.compare(password,user.password);
          if(comp){
           const token = jwt.sign({ userId: user.id }, 'mykey');
+          const isSession=await Session.findOne({where:{user_id:user.id}})
+          if(!isSession){
+          const sess= await Session.create(
+            {
+              user_id:user.id,
+              status:true,
+            }
+          )}
           res.send({ token });
+
           console.log("login sucessfull");
          }
          else{
