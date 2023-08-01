@@ -25,12 +25,12 @@ const sendEmail = async (email: string, subject: string, text: string) => {
             host: 'smtp.ethereal.email',
             port: 587,
             auth: {
-                user: 'jacques44@ethereal.email',
-                pass: 'mwrNVr8NpXvPKZ3DYf'
+                user: 'alvera50@ethereal.email',
+                pass: 'zqvSMWgtr92qsxd4xV'
             }
         });
         await transporter.sendMail({
-            from: 'jacques44@ethereal.email' ,  // process.env.USER,
+            from: 'alvera50@ethereal.email' ,  // process.env.USER,
             to: email,//email
             subject: subject,
             text:  text,

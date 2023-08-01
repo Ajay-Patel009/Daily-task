@@ -1,6 +1,4 @@
-// import connection from "./src/db/connection";
-// import express from 'express';
-// import bodyParser from 'body-parser'
+
 import { Request,Response } from "express";
 import User from "../../models/users";
 import jwt from 'jsonwebtoken';
@@ -18,10 +16,10 @@ export const signup= async(req:Request,res:Response)=>{
     
     try{
          const isUser = await User.findOne({where:{user_name:data.user_name}});
-         console.log("find");
-         console.log(data);
-         console.log(isUser);
-         console.log(req.body.user_name);
+        //  console.log("find");
+        //  console.log(data);
+        //  console.log(isUser);
+        //  console.log(req.body.user_name);
   
     
     if(!isUser){

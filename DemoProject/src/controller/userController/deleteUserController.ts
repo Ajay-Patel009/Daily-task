@@ -4,15 +4,11 @@ import User from "../../models/users";
 
 
 export const deleteUser =async(req:Request,res:Response)=>{
-   
-    const token = req.header('Authorization');
-
+   const token = req.header('Authorization');
     if (!token) {
         return res.status(401).json({ error: 'Token not found in the request header' });
     }
-
-    try {
-        // const decodedToken = jwt_decode(token) as DecodedToken;
+     try {
         const decodeId = req.body.userId;
         const user = await User.destroy({ where: { id: decodeId } });
         if(!user)
@@ -24,8 +20,4 @@ export const deleteUser =async(req:Request,res:Response)=>{
         catch(err){
             console.log(err)
         }
-
-    
-
-
-}
+    }

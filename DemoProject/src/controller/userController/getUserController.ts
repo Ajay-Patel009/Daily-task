@@ -14,32 +14,23 @@ import Session from "../../models/session";
 // }
 
 export const getUser = async (req: Request, res: Response) => {
-    const token = req.header('Authorization');
+    // const token = req.header('Authorization');
     const decodedToken=req.body.userId;
-    console.log(decodedToken);
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",decodedToken)
+    
+    // console.log(decodedToken);
 
-    if (!token) {
-        return res.status(401).json({ error: 'Token not found in the request header' });
-    }
+    // if (!token) {
+    //     return res.status(401).json({ error: 'Token not found in the request header' });
+    // }
 
     try {
-        // const decodedToken = jwt_decode(token) as DecodedToken;
-        // const userId = decodedToken.userId;
-        // const isSession= await Session.findOne({where:{user_id:userId},})
         const user = await User.findOne({ where: { id: decodedToken} });
-       
-        
-                if (!user) {
+       if (!user) {
                     return res.status(404).json({ error: 'User not found' });
                 }
-                const isSession= await Session.findOne({where:{user_id:decodedToken, status:true},})
-                if(isSession){
-                res.json(user);
-                   }
-                   else{
-                    res.send("user already logged out")
-                   }
-            }
+                res.json({user});
+             }
         
      catch (error) {
         console.log('Error decoding token or querying user:');
@@ -47,36 +38,5 @@ export const getUser = async (req: Request, res: Response) => {
     }
 
 }
-
-
-// export const getUser = async (req: Request, res: Response) => {
-//     const token = req.header('Authorization');
-
-//     if (!token) {
-//         return res.status(401).json({ error: 'Token not found in the request header' });
-//     }
-
-//     try {
-//         const decodedToken = jwt_decode(token);
-//         // Assuming your decoded token has a field 'userId' containing the user's ID
-//         const userId = decodedToken.userId;
-
-//         // Query the database to find the user with the given ID
-//         const user = await User.findOne({ where: { id: userId } });
-
-//         if (!user) {
-//             return res.status(404).json({ error: 'User not found' });
-//         }
-
-//         // If the user is found, you can send the user's data in the response
-//         res.json(user);
-//     } catch (error) {
-//         console.error('Error decoding token or querying user:', error.message);
-//         res.status(500).json({ error: 'Internal server error' });
-//     }
-// }
-
-
-
 
 

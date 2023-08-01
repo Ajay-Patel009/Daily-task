@@ -7,9 +7,10 @@ import { signup } from '../controller/userController/signupController';
 
 
 
+
 const router = express.Router();
 
-router.post('/login',loginJoiMiddleware, login);
+router.post('/login',loginJoiMiddleware,login);
 router.post('/signup', signUpJoiMiddleware, signup);
 
 

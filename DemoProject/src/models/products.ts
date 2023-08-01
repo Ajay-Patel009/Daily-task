@@ -28,10 +28,11 @@ class Product extends Model {
   public base_price!: number;
   public images!: Blob;
   public bid_price!: number;
+  public curent_price!: number;
   public bidder_id!: number;
   public title!: string;
   public category_id!: number;
-  public address!: string;
+  public address!: number;
 }
 
 Product.init({
@@ -76,6 +77,11 @@ Product.init({
    
     
   },
+  curent_price: {
+    type: DataTypes.INTEGER,
+   
+    
+  },
   bidder_id: {
     type: DataTypes.INTEGER,
  
@@ -85,7 +91,7 @@ Product.init({
     type: DataTypes.INTEGER,
  },
  address: {
-  type: DataTypes.STRING,
+  type: DataTypes.INTEGER,
   
 
   
@@ -105,8 +111,8 @@ Product.init({
   sequelize, 
   modelName: 'products' 
 });
-// sequelize.sync({ force: true });
-// console.log("hii")
+// sequelize.sync({ alter: true });
+console.log("product table created")
 // console.log(Product === sequelize.models.products); // true
 
 

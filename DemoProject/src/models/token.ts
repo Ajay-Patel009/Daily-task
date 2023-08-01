@@ -3,9 +3,7 @@ import { Sequelize } from "sequelize";
 import { Model, DataTypes } from 'sequelize';
 
 class Token extends Model {
-    delete() {
-        throw new Error('Method not implemented.');
-    }
+ 
     public id!: number;
     public token!:string;
     // public created_at: Date;
@@ -32,8 +30,8 @@ class Token extends Model {
     sequelize, 
     modelName: 'tokens' 
   });
-  sequelize.sync({ force: true });
-  console.log("hii")
+  // sequelize.sync({ alter: true });
+  console.log("token table generated")
   console.log(Token === sequelize.models.tokens); // true
   
   

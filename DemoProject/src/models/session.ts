@@ -27,8 +27,8 @@ class Session extends Model {
     sequelize, 
     modelName: 'sessions' 
   });
-//   sequelize.sync({ force: true });
-  console.log("hii")
+  // sequelize.sync({ alter: true });
+  console.log("sessions table")
   console.log(Session === sequelize.models.sessions); // true
   
   

@@ -13,17 +13,15 @@ import { Model, DataTypes } from 'sequelize';
 // const sequelize = new Sequelize('sqlite::memory:');
 
 class User extends Model {
-  static
-      // },
-      findById(userId: string) {
-          throw new Error('Method not implemented.');
-  }
+
   public id!: number
   public user_name!: string;
   public email!:string;
   public password!: string;
   public mobile_no!: number;
   public profilePic!:Blob;
+    
+   
     // public password!: string;
   // public password!: string;
   // public password!: string;
@@ -59,10 +57,10 @@ User.init({
   profilePic: {
     type: DataTypes.BLOB,
   },
-  gender: {
-    type: DataTypes.ENUM('male','female')
+  // gender: {
+  //   type: DataTypes.ENUM('male','female')
    
-  },
+  // },
   // DOB: {
   //   type: DataTypes.DATE
     
@@ -81,8 +79,9 @@ User.init({
   sequelize, 
   modelName: 'users' 
 });
-
-
+// sequelize.sync({ alter: true });
+console.log("user Table created")
+// console.log(User === sequelize.models.users); // true
 
 
 

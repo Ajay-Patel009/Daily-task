@@ -1,7 +1,4 @@
 import { Request,Response } from "express";
-import User from "../../models/users";
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
 import Session from "../../models/session";
 
 
@@ -11,7 +8,7 @@ export const logout= async(req:Request,res:Response)=>{
     try{
         await Session.update(
             {
-               status:false
+            status:false
             },{where:{user_id:decodedToken,status:true}}
             
         )
