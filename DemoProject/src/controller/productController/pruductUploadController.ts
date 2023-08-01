@@ -2,10 +2,6 @@ import Product from "../../models/products";
 import express from 'express';
 import { Request, Response } from "express";
 
-
-
-
-
 export const uploadProduct = async(req:Request,res:Response)=>{
 
     const data=req.body;

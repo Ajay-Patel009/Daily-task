@@ -14,13 +14,13 @@ import { addAddress, getAddress } from '../controller/userController/addressCont
 const router = express.Router();
 
 
-router.post('/getUser',authenticateJWT,sessionManagement,getUser);
+router.get('/getUser',authenticateJWT,sessionManagement,getUser);
 router.post('/logout',authenticateJWT,sessionManagement, logout);
-router.post('/deleteUser',authenticateJWT,sessionManagement,deleteUser);
-router.post('/editUserDetails',authenticateJWT,sessionManagement, EditUserDetails)
+router.delete('/deleteUser',authenticateJWT,sessionManagement,deleteUser);
+router.put('/editUserDetails',authenticateJWT,sessionManagement, EditUserDetails)
 router.post('/uploadpic',authenticateJWT,sessionManagement, uploadPic);
 router.post('/addAddress',authenticateJWT,sessionManagement,addAddress);
-router.post('/getAddress',authenticateJWT,sessionManagement,getAddress);
+router.get('/getAddress',authenticateJWT,sessionManagement,getAddress);
 
 
 export default router;

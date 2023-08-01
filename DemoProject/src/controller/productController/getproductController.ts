@@ -1,64 +1,36 @@
 // import { Category } from "../models/product.category.schema";
 import { Request, Response } from "express";
-
-
 import sequelize from "../../db/connection";
-import User from "../../models/users";
-import Category from "../../models/categoris";
-import Product from "../../models/products";
+import { QueryTypes } from "sequelize";
 
-
-
-
-const getProduct = async(req:Request,res:Response)=>{
-    const decodedToken=req.body.userId;
-    console.log(decodedToken);
+const getCategory=async(req:Request,res:Response)=> {
     try{
-        const data=await Product.findAll({where:{}});
-        if(data){
-        
-        res.status(200).send({
-           data 
+     const recursiveQuery = `
+     WITH RECURSIVE category_recursive AS (
+         -- Anchor member
+         SELECT id, category_name, parent_id
+         FROM "Categories"
+         WHERE parent_id IS NULL
+       
+         UNION ALL
+       
+         -- Recursive member
+         SELECT c.id, c.name, c.parent_id
+         FROM "Categories" c
+         INNER JOIN category_recursive cr ON c.parent_id = cr.id
+       )
+       
+       SELECT *
+       FROM category_recursive
+     `;
 
-        })};
-        
-    }
-    catch(err)
-    {
-        res.status(400).send("err");
-    }
+     const categoriesWithSubcategories = await sequelize.query(recursiveQuery, {
+         type: QueryTypes.SELECT,
+     });
+     res.status(200).json(categoriesWithSubcategories);
+ 
+ }catch(error){
+     res.status(500).json({message: "Server Error"});
 }
-
-
-
-
-
-
-
-
-
-const getCategory = async (req: Request,res:Response) => {
-    // try {
-    //     const categoryData = await Category.findAll({attributes:['category'],group:'category'});
-    //     //const subcategoryData = await Category.findAll({ where: { Category:req.body.category},distinct:'Category',attributes: { exclude: ['subcategory', 'createdAt', 'updatedAt'] } });
-    //     res.status(400).send({categoryData});
-    // }
-    // catch {
-    //     return false;
-    // }
-
-    const data=await Category.findAll();
-    res.send(data);
 }
-
-const getsubCategory = async (req: Request,res:Response) => {
-    try {
-        const subcategoryData = await Category.findAll({where:{category:req.body.category},attributes: { exclude: ['createdAt', 'updatedAt'] } });
-        res.status(400).send({subcategoryData});
-    }
-    catch {
-        res.status(404).send("not found");
-    }
-}
-
-export {getCategory,getsubCategory, getProduct};
+export {getCategory};
