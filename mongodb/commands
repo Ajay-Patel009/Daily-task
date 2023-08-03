@@ -1,0 +1,6 @@
+sudo apt install net-tools
+ifconfig
+$ cd /etc
+$ ls
+$ sudo nano mongod.conf
+
